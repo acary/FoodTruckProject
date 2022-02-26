@@ -1,25 +1,50 @@
 package com.skilldistillery.foodtruck;
 
+import java.util.Scanner;
+
 public class FoodTruckApp {
 
 	public static void main(String[] args) {
-		
-		FoodTruck ft1 = new FoodTruck();
-		ft1.setName("Axle Grease");
-		ft1.setFoodType("American");
-		ft1.setRating(4.5);
-		ft1.toString();
-		
-		FoodTruck ft2 = new FoodTruck();
-		ft2.setName("Bok Choy Boy");
-		ft2.setFoodType("Asian");
-		ft2.setRating(4.3);
-		ft2.toString();
-		
-		FoodTruck ft3 = new FoodTruck();
-		ft3.setName("Classic Diner");
-		ft3.setFoodType("Continental");
-		ft3.setRating(3.5);
-		ft3.toString();
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Welcome to the Food Truck Rodeo!");
+		boolean attending = true;
+
+		do {
+			String name, foodType;
+			Double rating;
+
+			System.out.println("Enter a food truck name:");
+			name = sc.next();
+
+			if (name.equals("quit")) {
+				attending = false;
+				break;
+			}
+
+			System.out.println("Enter a food type:");
+			foodType = sc.next();
+
+			System.out.println("Enter a rating:");
+			rating = sc.nextDouble();
+
+			FoodTruck ft = new FoodTruck(name, foodType, rating);
+			ft.addTruck(ft);
+
+		} while (attending);
+
+		presentRodeo();
+
+		sc.close();
+	}
+
+	public static void presentRodeo() {
+		System.out.println("Presenting rodeo:");
+		FoodTruck ft = new FoodTruck();
+		FoodTruck[] foodTruckRodeo = ft.getTrucks();
+		for (FoodTruck current : foodTruckRodeo) {
+			System.out.println(current.toString());
+		}
+
 	}
 }
