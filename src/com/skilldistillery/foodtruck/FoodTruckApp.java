@@ -50,22 +50,40 @@ public class FoodTruckApp {
 				
 				// GET SELECTION
 				String selection = sc.next();
+				FoodTruck ft = new FoodTruck();
+				FoodTruck[] foodTruckRodeo = ft.getTrucks();
 				switch (selection) {
 				case "1":
 					System.out.println("\nATTENDING FOOD TRUCKS:\n");
-					FoodTruck ft = new FoodTruck();
-					FoodTruck[] foodTruckRodeo = ft.getTrucks();
 					for (FoodTruck current : foodTruckRodeo) {
 						System.out.println(current.toString());
 					}
 					break;
 				case "2":
 					System.out.println();
-					System.out.println("Average rating: TBD");
+					System.out.println("Average rating:");
+					double sum = 0.0;
+					double average = 0.0;
+					for (int i = 0; i < foodTruckRodeo.length; i++) {
+						sum += (int) foodTruckRodeo[i].getRating();
+					}
+					average = sum / foodTruckRodeo.length;
+					System.out.println(average);
 					break;
 				case "3":
 					System.out.println();
-					System.out.println("Winning food truck: TBD");
+					System.out.println("Winning food truck:");
+					int winningPos = 0;
+					int winningRating = 0;
+					winningRating = (int) foodTruckRodeo[0].getRating();
+					for (int i = 0; i < foodTruckRodeo.length; i++) {
+						int currentRating = (int) foodTruckRodeo[i].getRating();
+						if (currentRating > winningRating) {
+							winningPos = i;
+							winningRating = currentRating;
+						}
+					}
+					System.out.println(foodTruckRodeo[winningPos].toString());
 					break;
 				case "Q":
 				case "q":
