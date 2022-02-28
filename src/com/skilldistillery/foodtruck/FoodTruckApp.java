@@ -6,7 +6,7 @@ public class FoodTruckApp {
 
 	public static void main(String[] args) {
 
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in).useDelimiter("\n");
 		System.out.println("*******  WELCOME TO THE FOOD TRUCK RODEO!  *******");
 		System.out.println("* Enter up to 5 food trucks (`quit` to continue) *");
 		System.out.println("**************************************************\n");
@@ -34,6 +34,7 @@ public class FoodTruckApp {
 			try {
 				System.out.print("Enter a food type: ");
 				foodType = sc.next();
+				sc.nextLine();
 				
 			} catch (Exception e) {
 				System.out.println("Check input type and try again.");

@@ -19,6 +19,7 @@ Q: Quit
 - When using IDE features to create new methods, it defaults to `public static` methods. I reverted to include logic code within the `switch` cases rather than using method calls to fulfill the requirement of only one `static` method (`main`).
 - Using an infinite loop `for(;;)` helped me loop through the user input section of the `do-while` loop.
 - Consuming an extra new line character with `sc.nextLine()` after catching invalid input from `sc.nextDouble()` prevented the next scanner call from advancing without appropriate user input.
+- Adding a delimiter `.useDelimiter("\n")` to the Scanner initialization helped account for String input that included spaces.
 - Getters and setters provide access to class instance variables while keeping them private.
 - As a security precaution, the `getTrucks()` method provides a copy of the `FoodTruck[]` array versus sending the static member, in order to display the food trucks.
 
