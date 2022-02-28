@@ -20,6 +20,7 @@ public class FoodTruckApp {
 			try {
 				System.out.print("Enter a food truck name: ");
 				name = sc.next();
+				sc.nextLine();
 				
 			} catch (Exception e) {
 				System.out.println("Check input type and try again.");
