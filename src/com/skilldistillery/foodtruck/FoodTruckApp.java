@@ -7,32 +7,55 @@ public class FoodTruckApp {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Welcome to the Food Truck Rodeo!");
+		System.out.println("*******  WELCOME TO THE FOOD TRUCK RODEO!  *******");
+		System.out.println("* Enter up to 5 food trucks (`quit` to continue) *");
+		System.out.println("**************************************************\n");
 		boolean attending = true;
+		int counter = 0;
 
 		do {
 			String name, foodType;
 			Double rating;
 
-			System.out.println("Enter a food truck name:");
-			name = sc.next();
-
-			if (name.equals("quit")) {
-				attending = false;
-				break;
+			try {
+				System.out.print("Enter a food truck name: ");
+				name = sc.next();
+				
+			} catch (Exception e) {
+				System.out.println("Check input type and try again.");
+				continue;
 			}
 
-			System.out.println("Enter a food type:");
-			foodType = sc.next();
-			foodType = foodType.trim();
+			if (name.equals("quit")) {
+				break;
+			}
+			
+			try {
+				System.out.print("Enter a food type: ");
+				foodType = sc.next();
+				
+			} catch (Exception e) {
+				System.out.println("Check input type and try again.");
+				continue;
+			}
 
-			System.out.println("Enter a rating:");
-			rating = sc.nextDouble();
+			try {
+				System.out.print("Enter a rating: ");
+				rating = sc.nextDouble();
+			} catch (Exception e) {
+				System.out.println("Check input type and try again.");
+				sc.nextLine();
+				continue;
+			}
 
-			FoodTruck ft = new FoodTruck(name, foodType, rating);
-			ft.addTruck(ft);
-
-		} while (attending);
+			if (name != null && foodType != null & rating != 0.0) {
+				FoodTruck ft = new FoodTruck(name, foodType, rating);
+				ft.addTruck(ft);
+				counter++;
+			}
+			
+			
+		} while (counter < 5);
 
 		do {
 			for (;;) {
@@ -91,6 +114,8 @@ public class FoodTruckApp {
 				case "QUIT":
 					System.out.println("Thanks for visiting!");
 					System.out.println();
+					attending = false;
+					sc.close();
 					System.exit(0);
 				}
 			}
